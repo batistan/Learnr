@@ -70,7 +70,7 @@ public class DBManager {
             //To retrieve who is attending, we will have to
             //"SELECT uid from RSVPS where eid = X"
 
-            sql = "CREATE TABLE IF NOT EXISTS "
+            sql = "CREATE TABLE IF NOT EXISTS " +
                     "RSVPS " +
                     "(eid int(8), uid int(8));";
             stmt.executeUpdate(sql);
@@ -93,15 +93,84 @@ public class DBManager {
     }
 
     //method to add a new study meetup to the table 
-    public static bool createMeetup(subject, classname, starttime, endtime, user){
+    public static boolean createMeetup(String subject, String classname, String starttime, String endtime, int user){
+        
+        Statement stmt = null;
+        try {
+        stmt = conn.createStatement();
+        java.sql.Timestamp start = java.sql.Timestamp.valueOf(starttime);
+        java.sql.Timestamp end = java.sql.Timestamp.valueOf(endtime);
+
+        String sql = String.format("INSERT INTO eventTable VALUES (null, '%s', '%s', '%s', '%s', '%d');", subject, classname, starttime, endtime, user);
+        stmt.executeUpdate(sql);
+        return true;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+        finally {
+            //  Close resources
+            try {
+                stmt.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
 
     }
 
     //method to add a new user
-    public static bool createUser(sn, pass){
+    public static boolean createUser(String sn, String pass){
+
+        Statement stmt = null;
+        try {
+        stmt = conn.createStatement();
+
+        String sql = String.format("INSERT INTO userIDTable VALUES ('%s', '%s',null);", sn, pass);
+        stmt.executeUpdate(sql);
+        return true;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+        finally {
+            //  Close resources
+            try {
+                stmt.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
 
     }
 
+    public static int getIDfromSN(String sn){
+        Statement stmt = null;
+        try {
+        stmt = conn.createStatement();
+
+        String sql = String.format("SELECT uid FROM userIDTable WHERE username = '%s';", sn);
+        ResultSet rs = stmt.executeQuery(sql);
+        rs.next();
+        return rs.getInt(1);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+        finally {
+            //  Close resources
+            try {
+                stmt.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+    }
+/*
     //method to add a user to the RSVP list
     //(RSVP list will be a list of doubles, ($event is going to $event))
     public static bool joinMeetup(eventID, userID){
@@ -112,7 +181,7 @@ public class DBManager {
     //GetAttending
     //IsAttending(User, Meetup)
     //more stuff
-
+*/
     public static Connection connect() {
     /*  Returns a java.sql.Connection object for accessing database assuming password, username, databaseName are valid
     */
@@ -135,6 +204,16 @@ public class DBManager {
 
     public static void main(String[] args){
         initializeDB();
+        String time1 = "1994-07-17 12:34:56";
+        String time2 = "2016-07-17 12:34:56";
+        createUser("Slamwell17", "passw");        
+        createMeetup("CSC 113", "CSC", time1, time2, getIDfromSN("Slamwell17"));
+
+        try {
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
 
     }
 
