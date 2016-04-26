@@ -1,0 +1,10 @@
+To install MYSQL:
+The instructions on the website are straightforward.
+
+To install the JDBC bridge that allows Java to connect to MYSQL:
+Go to https://dev.mysql.com/downloads/connector/j/
+Save it to somewhere in your system
+Add the location of the connector jar file to the classpath; in my case, on MAC, for example, my classpath is: 
+.:/Users/samuelcohen/mysql-connector-java-5.1.38/mysql-connector-java-5.1.38-bin.jar
+
+This will allow Java to find the Java SQL connector.
