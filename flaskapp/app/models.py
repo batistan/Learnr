@@ -73,6 +73,24 @@ def getUsernameFromUID(uid):
 			return rs[0][0]
 
 
+def get_meetup_info(eid):
+	with sql.connect("database.db") as con:
+		cur = con.cursor()
+		cur.execute("SELECT * FROM meetups where eid = ?;", str(eid))
+		row = cur.fetchone()
+
+		mdict = collections.OrderedDict()
+		mdict['eid'] = row[0]
+		mdict['starttime'] = row[1]
+		mdict['endtime'] = row[2]
+		mdict['classname'] = row[3]
+		mdict['subject'] = row[4]
+		mdict['createdby'] = row[5]
+
+
+		return(json.dumps(mdict))
+
+
 #def exists_user():
 #def delete_meetup():
 #def delete_user():

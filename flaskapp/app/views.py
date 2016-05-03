@@ -8,6 +8,9 @@ def index():
 	return render_template("index.html")
 	#return get_all_meetups()
 	#return get_all_attendees('2')
+	#return get_meetup_info(2)
+
+
 @app.route("/getallmeetups")
 def getallmeetups():
 	return get_all_meetups()
@@ -63,3 +66,13 @@ def getattend():
 	eid = request.form['eid']
 
 	return str(is_going(uid, eid))
+
+
+@app.route("/minfo", methods = ["GET", "POST"])
+def minfo():
+	return render_template("getmeetupinfo.html")
+
+@app.route("/_minfo")
+def _minfo():
+	a = request.args.get('a', 0, type=int)
+	return get_meetup_info(a)

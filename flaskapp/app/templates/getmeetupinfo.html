@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+
+    <h1>Get info for a meetup!</h1>
+    
+    {% if error %} 
+    <p class=error><strong>Error:</strong> {{ error }}
+    {% endif %}  
+    
+    <input type = text name =a></input>
+    <p name = a></p>
+
+    <button onclick = "myfunction()">Load JSON!</a>
+
+    <script>
+
+     function myfunction() {  $.getJSON("http://localhost:5000/_minfo", {
+      a: $('input[name="a"]').val()
+       }, function(data) {
+        $('p[name="a"]').text("")
+        for (var key in data){
+          $('p[name="a"]').append("<br>" + key + ':' + data[key] + "<br>");
+        }
+      });
+      return false;}
+  </script>
+
+
+{% endblock %}
