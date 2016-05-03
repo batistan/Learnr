@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Learnr</h1>
+    <form action="/signup">
+      <button type="submit">Sign up today!</button>
+    </form>
+    <form action="/meetup">
+    	<button type="submit"> Create a meetup!</button>
+    </form>
+
+    <form action="/attend">
+    	<button type="submit"> Attend an event!</button>
+    	</form>
+   <form action="/checkattendance">
+    	<button type="submit"> Check attendance!</button>
+    	</form>
+    <form action="/getallmeetups">
+      <button type="submit">See all meetups!</button>
+    </form>
+   
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Check attendance!</h1>
+    
+    {% if error %} 
+    <p class=error><strong>Error:</strong> {{ error }}
+    {% endif %}  
+    <form method="post" action="{{ url_for('getattend') }}">
+      <p><label>Username id:</label> <input type="text" name="uid"></p>  
+      <p><label>Event id:</label> <input type="text" name="eid"></p> 
+      <p><button type="submit">Send</button></p>
+    </form>
+{% endblock %}

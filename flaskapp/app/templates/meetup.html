@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Create a meetup!</h1>
+    
+    {% if error %} 
+    <p class=error><strong>Error:</strong> {{ error }}
+    {% endif %}  
+    <form method="post" action="{{ url_for('createmeetup') }}">
+      <p><label>Starttime:</label> <input type="text" name="starttime"></p>  
+      <p><label>Endtime:</label> <input type="text" name="endtime"></p>
+      <p><label>Classname:</label> <input type="text" name="classname"></p>  
+      <p><label>Subject:</label> <input type="text" name="subject"></p>
+      <p><label>Createdby:</label><input type = "integer" name = "createdby"></p>
+
+      <p><button type="submit">Send</button></p>
+    </form>
+{% endblock %}
