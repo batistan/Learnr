@@ -1,13 +1,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Learnr</title>
-    <link href="css/styles.css" rel="stylesheet" type="text/css" />
+    <link href="css/styles.css" rel="stylesheet" type="text/css"/>
     <link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
-
-    <!---menu--->
     <link rel="stylesheet" href="css/superfish.css" media="screen">
+
     <script src="js/jquery-1.9.0.min.js"></script>
     <script src="js/hoverIntent.js"></script>
     <script src="js/superfish.js"></script>
@@ -32,32 +31,18 @@
 </header>
 
 <div class="page">
-  <div class="panel">
-    <div class="title">
-		<h1>Login</h1>
-		{% if username %}
-			<br><p><strong>You are logged in as:</strong> {{ username }}</p>
-		{% endif %}
-          <div class="contact-form mar-top30">
-			<form method="post" action="{{ url_for('loggedin') }}">
-                <label> <span>Username</span>
-                    <input type="text" class="input_text" name="username"/>
-                </label>
+    <div class="panel">
+        <div class="title">
+            <h1>Meetup information</h1>
+            {% if error %}
+            <p class=error><strong>Error:</strong> {{ error }}
+            {% endif %}
 
-                <label> <span>Password</span>
-                    <input type="password" class="input_text" name="password"/>
-                </label>
-
-                <label>
-                    <button type="submit" class="button">Submit</button>
-                </label>
-			</form>
-          </div>
-	
-	
-</div>
-</div>
-</div>
-<script>
-
-</script>
+            <p><strong>Times are in format: YYYY/MM/DD HH:MM:SS</strong></p>
+            <p>Meetup ID: {{ meetid }}</p>
+            <p>Subject: {{ subject }}</p>
+            <p>Start Time: {{ starttime }}</p>
+            <p>End Time: {{ endtime }}</p>
+            <p>Coordinator: {{ coordinator }}</p>
+            <p>Location:</p>
+            {{googlemap("meetup_map", lat=40.820189, lng=-73.949499, markers=[(40.820189, -73.949499)])}}
