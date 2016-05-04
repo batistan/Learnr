@@ -30,6 +30,22 @@ def image_render(image):
 def js_render(js):
     return render_template("js/%s"%js)
 
+@app.route("/js/moment-develop/moment.js")
+def moment_js_render():
+    return render_template("/js/moment-develop/moment.js")
+
+@app.route("/bootstrap/js/<js>")
+def bootstrap_js_render(js):
+    return render_template("/bootstrap/js/%s"%js)
+
+@app.route("/bootstrap/dist/bootstrap.min.js")
+def bootstrapminjs():
+    return render_template("bootstrap/dist/js/bootstrap.min.js")
+
+@app.route("/bootstrap-datetimepicker.min.js")
+def timepickerjs():
+    return render_template("bootstrap-datetimepicker.min.js")
+
 # Second Button
 @app.route("/meetup", methods=["GET", "POST"])
 def meetup():
