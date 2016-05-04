@@ -163,7 +163,7 @@ def meetupinfo(eid):
     subject=mdict['subject']
     starttime=mdict['starttime']
     endtime=mdict['endtime']
-    coordinator=mdict['createdby']
+    coordinator=getUsernameFromUID(mdict['createdby'])
     lat=mdict['latitude']
     lng=mdict['longitude']
 
