@@ -92,8 +92,8 @@ def loggedin():
     loginStatus = False
     loginStatus = confirmUserPass(logUser,logPass)
     if loginStatus == True:
-        session['username'] = login_user
-        return render_template("loggedin.html",username=login_user)
+        session['username'] = logUser
+        return render_template("loggedin.html",username=logUser)
     else:
         return render_template("loggedin.html",error="Bad user or password")
 
