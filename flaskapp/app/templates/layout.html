@@ -1,26 +1,31 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <title>Learnr!</title>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    </head>
-    <body>
-      {% with messages = get_flashed_messages() %}
-      {% if messages %}
-      <ul class=flashes>
-	{% for message in messages %}
-	<li>{{ message }}</li>
-	{% endfor %}
-      </ul>
-      {% endif %}
-      {% endwith %}
-      {% block content %}{% endblock %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Learnr</title>
+<link href="css/styles.css" rel="stylesheet" type="text/css" />
+<link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="{{url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
-  <script type=text/javascript>
-  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-</script>
+<!---menu--->
+<link rel="stylesheet" href="css/superfish.css" media="screen">
+<script src="js/jquery-1.9.0.min.js"></script>
+<script src="js/hoverIntent.js"></script>
+<script src="js/superfish.js"></script>
 
-    </body>
-</html>
+<header>		
+  <div class="header-wrap">
+  <div class="logo">
+    <h1>Learnr</h1>
+  </div>
+  <div class="menu">
+    <ul class="sf-menu" id="example">
+      <li><a href="index">Home</a></li>
+      <li><a href="meetup">Create Meetup</a></li>
+      <li> <a href="attend">Attend Event </a> </li>
+      <li> <a href="checkattendance">Check Attendance</a></li>
+	  <li><a href="signup">Sign Up</a></li>
+	  <li><a href="login">Login</a></li>
+    </ul>
+  </div>
+</div>
+</header>
