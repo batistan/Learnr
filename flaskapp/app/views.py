@@ -1,5 +1,6 @@
 from app import app
 from flask import render_template, redirect, request, flash, g, session, url_for, send_file
+from flask_googlemaps import GoogleMaps, Map
 from models import *
 
 app.secret_key = "donttellanyonemysecret"
@@ -23,7 +24,7 @@ def style_render(css):
 
 @app.route("/images/<image>")
 def image_render(image):
-    filename = ('templates\\images\\%s'%image)
+    filename = ('templates/images/%s'%image)
     return send_file(filename,mimetype='image/jpeg')
 
 @app.route("/js/<js>")
@@ -118,3 +119,15 @@ def _minfo():
     a = request.args.get('a', 0, type=int)
     return get_meetup_info(a)
 
+@app.route("/meetupinfo")
+def meetupinfo():
+    #TODO: get these from json
+    eid=4
+    subject="Paradigms"
+    starttime="whenever"
+    endtime="later"
+    coordinator="lol"
+    lat=40.820189
+    lng=-73.949499
+    locationMap = Map(identifier="view-side",lat=lat,lng=lng,zoom=15,markers=[(lat, lng)])
+    return render_template("meetupinfo.html", meetid=eid, subject=subject, starttime=starttime, endtime=endtime, coordinator=coordinator, themap=locationMap)

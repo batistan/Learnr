@@ -10,6 +10,8 @@
     <script src="js/jquery-1.9.0.min.js"></script>
     <script src="js/hoverIntent.js"></script>
     <script src="js/superfish.js"></script>
+    <!-- to render map -->
+    {{ themap.js }}
 </head>
 
 <header>		
@@ -45,4 +47,5 @@
             <p>End Time: {{ endtime }}</p>
             <p>Coordinator: {{ coordinator }}</p>
             <p>Location:</p>
-            {{googlemap("meetup_map", lat=40.820189, lng=-73.949499, markers=[(40.820189, -73.949499)])}}
+            <!-- render the map -->
+            <p>{{ themap.html }}</p>
