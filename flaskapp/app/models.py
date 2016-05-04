@@ -49,6 +49,9 @@ def get_all_meetups():
             mdict['classname'] = row[3]
             mdict['subject'] = row[4]
             mdict['createdby'] = row[5]
+            mdict['coordinator'] = row[6]
+            mdict['latitude'] = row[7]
+            mdict['longitude'] = row[8]
 
             meetuplist.append(mdict)
 
