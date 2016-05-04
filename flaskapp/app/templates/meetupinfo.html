@@ -1,36 +1,6 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Learnr</title>
-    <link href="css/styles.css" rel="stylesheet" type="text/css"/>
-    <link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="css/superfish.css" media="screen">
+{% extends "layout.html" %}
+{% block content %}
 
-    <script src="js/jquery-1.9.0.min.js"></script>
-    <script src="js/hoverIntent.js"></script>
-    <script src="js/superfish.js"></script>
-    <!-- to render map -->
-    {{ themap.js }}
-</head>
-
-<header>		
-<div class="header-wrap">
-  <div class="logo">
-    <h1>Learnr</h1>
-  </div>
-  <div class="menu">
-    <ul class="sf-menu" id="example">
-      <li><a href="index">Home</a></li>
-      <li><a href="meetup">Create Meetup</a></li>
-      <li> <a href="attend">Attend Event </a> </li>
-      <li> <a href="checkattendance">Check Attendance</a></li>
-	  <li><a href="login">Login</a></li>
-	  <li><a href="signup">Sign Up</a></li>
-    </ul>
-  </div>
-</div>
-</header>
 
 <div class="page">
     <div class="panel">
@@ -41,17 +11,11 @@
             {% endif %}
 
             <p><strong>Times are in format: YYYY/MM/DD HH:MM:SS</strong></p>
-            <!-- TODO remove inline styling without breaking it -->
-            <!-- TODO make the button actually do something -->
-            <p><button class="button" style="width:150px; background-size:150px 30px; border:none; text-align:left;">Attend this meeting</button></p>
             <p>Meetup ID: {{ meetid }}</p>
             <p>Subject: {{ subject }}</p>
             <p>Start Time: {{ starttime }}</p>
             <p>End Time: {{ endtime }}</p>
             <p>Coordinator: {{ coordinator }}</p>
             <p>Location:</p>
-            <!-- render the map -->
-            <p>{{ themap.html }}</p>
-        </div>
-    </div>
-</div>
+            {{googlemap("meetup_map", lat=40.820189, lng=-73.949499, markers=[(40.820189, -73.949499)])}}
+

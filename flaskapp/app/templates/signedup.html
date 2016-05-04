@@ -1,34 +1,6 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Learnr</title>
-<link href="css/styles.css" rel="stylesheet" type="text/css" />
-<link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
+{% extends "layout.html" %}
+{% block content %}
 
-<!---menu--->
-<link rel="stylesheet" href="css/superfish.css" media="screen">
-<script src="js/jquery-1.9.0.min.js"></script>
-<script src="js/hoverIntent.js"></script>
-<script src="js/superfish.js"></script>
-
-<header>		
-  <div class="header-wrap">
-  <div class="logo">
-    <h1>Learnr</h1>
-  </div>
-  <div class="menu">
-    <ul class="sf-menu" id="example">
-      <li><a href="index">Home</a></li>
-      <li><a href="meetup">Create Meetup</a></li>
-      <li> <a href="attend">Attend Event </a> </li>
-      <li> <a href="checkattendance">Check Attendance</a></li>
-	  <li><a href="signup">Sign Up</a></li>
-	  <li><a href="login">Login</a></li>
-    </ul>
-  </div>
-</div>
-</header>
 
 <div class="page">
 	<div class="panel">
@@ -41,3 +13,5 @@
 		</div>  
     </div>
 </div>
+
+{% endblock %}

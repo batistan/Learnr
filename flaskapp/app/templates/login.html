@@ -1,18 +1,5 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Learnr</title>
-    <link href="css/styles.css" rel="stylesheet" type="text/css" />
-    <link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
-
-    <!---menu--->
-    <link rel="stylesheet" href="css/superfish.css" media="screen">
-    <script src="js/jquery-1.9.0.min.js"></script>
-    <script src="js/hoverIntent.js"></script>
-    <script src="js/superfish.js"></script>
-</head>
-
+{% extends "layout.html" %}
+{% block content %}
 <header>		
   <div class="header-wrap">
   <div class="logo">
@@ -58,6 +45,5 @@
 </div>
 </div>
 </div>
-<script>
 
-</script>
+{% endblock %}
