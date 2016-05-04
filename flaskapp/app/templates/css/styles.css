@@ -112,6 +112,12 @@ HEADER CLASSES
 PANEL CLASSES
 -------------------------------------------------*/
 
+<<<<<<< HEAD
+.panel{overflow:hidden; background: url(../images/bg3.jpg); padding:30px;}
+.title{ margin-bottom:20px; margin-top:15px;}
+.content p{ padding-bottom:10px;}
+.content img{margin-right:0px; float:left;}
+=======
 .panel{
     overflow:hidden;
     background: url(../images/bg3.jpg);
@@ -128,6 +134,7 @@ PANEL CLASSES
     margin-right:30px;
     float:left;}
 
+>>>>>>> 403ff1bc6946fd822fa093ff76abcb682e97e3cc
 
 /*-------------------------------------------------
 MENU CLASSES
