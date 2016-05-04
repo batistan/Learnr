@@ -15,15 +15,22 @@
             <p class=error><strong>Error:</strong> {{ error }}
             {% endif %}
 
-            <p><button class="button" style="width:160px; background-size:160px 30px; border:none;">Attend this event</button></p>
-            <p><strong>Times are in format: YYYY/MM/DD HH:MM:SS</strong></p>
-            <p>Meetup ID: {{ meetid }}</p>
-            <p>Subject: {{ subject }}</p>
-            <p>Start Time: {{ starttime }}</p>
-            <p>End Time: {{ endtime }}</p>
-            <p>Coordinator: {{ coordinator }}</p>
-            <p>Location:</p>
-            {{ themap.html }}
+            <form method="post" action="">
+                <label><button type="submit" class="button" style="text-align:left; width:140px; background-size:140px 30px; border:none;">Attend this event</button></label><br>
+                <label><strong>Times are in format: YYYY/MM/DD HH:MM:SS</strong></label><br>
+
+                <label>Meetup ID: {{ meetid }}</label><br>
+
+                <label>Subject: {{ subject }}</label><br>
+
+                <label>Start Time: {{ starttime }}</label><br>
+
+                <label>End Time: {{ endtime }}</label><br>
+
+                <label>Coordinator: {{ coordinator }}</label><br>
+
+                <center>{{ themap.html }}</center>
+            </form>
         </div>
     </div>
 </div>

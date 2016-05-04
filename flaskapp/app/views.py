@@ -125,7 +125,7 @@ def getattend():
 def getallmeetups():
     return get_all_meetups()
 
-@app.route("/minfo", methods=["GET", "POST"])
+@app.route("/minfo/", methods=["GET", "POST"])
 def minfo():
     return render_template("getmeetupinfo.html")
 
