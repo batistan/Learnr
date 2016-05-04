@@ -74,6 +74,23 @@ def doRSVP():
     set_going(uid, eid)
     return eid
 
+@app.route("/doRSVPJSON", methods=["GET", "POST"])
+def doRSVPJSON():
+    uid = request.args.get('uid', 0, type=int)
+    eid = request.args.get('eid', 0, type=int)
+
+    set_going(uid, eid)
+    return "Hi!"
+
+@app.route("/unRSVP", methods = ["GET", "POST"])
+def unRSVP():
+    uid = request.args.get('uid', 0, type=int)
+    eid = request.args.get('eid', 0, type=int)
+
+    set_not_going(uid, eid)
+    return "Hi!"
+    
+
 # Fourth Button
 @app.route("/checkattendance", methods=["GET", "POST"])
 def checkattendance():
@@ -133,17 +150,25 @@ def minfo():
 @app.route("/_minfo")
 def _minfo():
     a = request.args.get('a', 0, type=int)
-    return get_meetup_info(a)
+    return (json.dumps(get_meetup_info(a)))
 
-@app.route("/meetupinfo", methods=["GET", "POST"])
-def meetupinfo():
+@app.route("/meetupinfo<int:eid>", methods = ["GET", "POST"])
+def meetupinfo(eid):
+    mdict = get_meetup_info(eid)
+    if (not mdict):
+        return "Error!"
+
     #TODO: get these from json
-    eid=4
-    subject="Paradigms"
-    starttime="whenever"
-    endtime="later"
-    coordinator="lol"
-    lat=40.820189
-    lng=-73.949499
+    #eid= mdict['eid']
+    subject=mdict['subject']
+    starttime=mdict['starttime']
+    endtime=mdict['endtime']
+    coordinator=mdict['createdby']
+    lat=mdict['latitude']
+    lng=mdict['longitude']
+
+    tempuid = "2"
+
     locationMap = Map(identifier="view-side",lat=lat,lng=lng,zoom=15,markers=[(lat, lng)])
-    return render_template("meetupinfo.html", meetid=eid, subject=subject, starttime=starttime, endtime=endtime, coordinator=coordinator, themap=locationMap)
+    return render_template("meetupinfo.html", meetid=eid, subject=subject, starttime=starttime, endtime=endtime, coordinator=coordinator, themap=locationMap, 
+        uid = tempuid, attending = is_going(tempuid, eid))

@@ -15,10 +15,13 @@
             <p class=error><strong>Error:</strong> {{ error }}
             {% endif %}
 
-            <form method="post" action="">
-                <label><button type="submit" class="button" style="text-align:left; width:140px; background-size:140px 30px; border:none;">Attend this event</button></label><br>
-                <label><strong>Times are in format: YYYY/MM/DD HH:MM:SS</strong></label><br>
+            <button onclick = "RSVPmeetup()">Attend this event</button>
+            <button onclick = "unmeetup()">Do not attend this event</button>
 
+            <form method="post" action="">
+                <label></label><br>
+                <label>uid : {{uid }}</label><br>
+                <label>Attending: {{attending}}</label><br>
                 <label>Meetup ID: {{ meetid }}</label><br>
 
                 <label>Subject: {{ subject }}</label><br>
@@ -31,8 +34,27 @@
 
                 <center>{{ themap.html }}</center>
             </form>
+
+
+
         </div>
     </div>
 </div>
+
+<script>
+    function RSVPmeetup() {
+        $.getJSON("http://localhost:5000/doRSVPJSON", {
+      uid: {{uid}},
+      eid: {{meetid}}
+       }, function(data) {alert("Hello!");});
+       return false;}
+
+       function unmeetup() {
+        $.getJSON("http://localhost:5000/unRSVP", {
+      uid: {{uid}},
+      eid: {{meetid}}
+       }, function(data) {alert("Hello!");});
+       return false;}
+</script>
 
 {% endblock %}
