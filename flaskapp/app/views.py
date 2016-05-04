@@ -135,7 +135,7 @@ def _minfo():
     a = request.args.get('a', 0, type=int)
     return get_meetup_info(a)
 
-@app.route("/meetupinfo")
+@app.route("/meetupinfo", methods=["GET", "POST"])
 def meetupinfo():
     #TODO: get these from json
     eid=4

@@ -15,7 +15,7 @@
 </head>
 
 <header>		
-  <div class="header-wrap">
+<div class="header-wrap">
   <div class="logo">
     <h1>Learnr</h1>
   </div>
@@ -41,6 +41,9 @@
             {% endif %}
 
             <p><strong>Times are in format: YYYY/MM/DD HH:MM:SS</strong></p>
+            <!-- TODO remove inline styling without breaking it -->
+            <!-- TODO make the button actually do something -->
+            <p><button class="button" style="width:150px; background-size:150px 30px; border:none; text-align:left;">Attend this meeting</button></p>
             <p>Meetup ID: {{ meetid }}</p>
             <p>Subject: {{ subject }}</p>
             <p>Start Time: {{ starttime }}</p>
@@ -49,3 +52,6 @@
             <p>Location:</p>
             <!-- render the map -->
             <p>{{ themap.html }}</p>
+        </div>
+    </div>
+</div>
