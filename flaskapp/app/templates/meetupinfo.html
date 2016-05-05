@@ -9,7 +9,8 @@
         padding: 0;
       }
       #map {
-        height: 100%;
+        height: 300px;
+        width: 300px;
       }
       .controls {
         margin-top: 10px;
@@ -62,31 +63,45 @@
 
 <div class="page">
     <div class="panel">
+    <center>
+            <button onclick = "RSVPmeetup()" class="button" style="width:180px; background-size:180px 30px; border:none;">Attend this event</button>
+            <button onclick = "unmeetup()" class="button" style="width:200px; background-size:200px 30px; border:none;">Do not attend this event</button><br>
+
+             <h1>{% if attending %}
+                  You are going to this meetup!
+                  {% else %}
+                  You are not going to this meetup!
+                  {% endif %}</h1>
+
+            </center>
         <div class="title">
-            <h1>Meetup information</h1>
+            <h1 style= "font-size: 4em">Meetup information</h1>
             {% if error %}
             <p class=error><strong>Error:</strong> {{ error }}
             {% endif %}
+          </div> 
 
-            <button onclick = "RSVPmeetup()" class="button" style="width:180px; background-size:180px 30px; border:none;">Attend this event</button>
-            <button onclick = "unmeetup()" class="button" style="width:200px; background-size:200px 30px; border:none;">Do not attend this event</button>
+            <div id = "info" style = "width:50%; float: left">
+                <h1>What class is this meetup for?</h1> {{ classname }} <br><br>
 
-            <form method="post" action="">
-                <label></label><br>
-                <label>uid : {{uid }}</label><br>
-                <label>Attending: {{attending}}</label><br>
-                <label>Meetup ID: {{ meetid }}</label><br>
+                <h1>Subject:</h1> {{ subject }}<br><br>
 
-                <label>Subject: {{ subject }}</label><br>
+                <h1>Start Time:</h1> {{ starttime }}<br><br>
 
-                <label>Start Time: {{ starttime }}</label><br>
+                <h1>End Time:</h1> {{ endtime }}<br><br>
 
-                <label>End Time: {{ endtime }}</label><br>
-
-                <label>Coordinator: {{ coordinator }}</label><br>
+                <h1>Coordinator:</h1> {% if coordinator == "Error" %}
+                Sorry, there doesn't appear to be a valid coordinator!
+                {%else%}
+                {{ coordinator }}
+                {% endif %}<br>
 
                 <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+              </div>
+                <div id = "mapcontainer" style="float: left">
+                <h1>Where is this meetup?</h1>
                 <div id="map"></div>
+                </div>
                     <script>
 
                       var map;
@@ -187,18 +202,18 @@
                     </script>
                     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDm--G1kYbbWlRnXL68TtJdFinSTm71Xa0&libraries=places&callback=initialize">
                     </script>
-            </form>
 
-        </div>
+
     </div>
 </div>
-
+<p></p>
 <script>
     function RSVPmeetup() {
         $.getJSON("http://localhost:5000/doRSVPJSON", {
       uid: {{uid}},
       eid: {{meetid}}
        }, function(data) {alert("Hello!");});
+        location.reload();
        return false;}
 
        function unmeetup() {
@@ -206,6 +221,7 @@
       uid: {{uid}},
       eid: {{meetid}}
        }, function(data) {alert("Hello!");});
+        location.reload();
        return false;}
 </script>
 

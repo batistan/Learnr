@@ -162,6 +162,7 @@ def meetupinfo(eid):
 
     #TODO: get these from json
     #eid= mdict['eid']
+    classname = mdict['classname']
     subject=mdict['subject']
     starttime=mdict['starttime']
     endtime=mdict['endtime']
@@ -171,5 +172,5 @@ def meetupinfo(eid):
 
     tempuid = "2"
 
-    return render_template("meetupinfo.html", meetid=eid, subject=subject, starttime=starttime, endtime=endtime, coordinator=coordinator, lat=lat, lng=lng,  
+    return render_template("meetupinfo.html", meetid=eid, classname = classname, subject = subject, starttime=starttime, endtime=endtime, coordinator=coordinator, lat=lat, lng=lng,  
         uid = tempuid, attending = is_going(tempuid, eid))
