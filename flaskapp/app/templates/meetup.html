@@ -53,7 +53,15 @@
 				<label> <span>Created by:</span>
 					<input type="text" class="input_text" name="createdby"/>
 				</label>
+
+                <label> <span>Location:</span>
+                    <center><iframe height="500px" width="500px" frameborder="0" src="{{mapurl}}">Your browser is not compatible with this page.</iframe></center>
+                </label>
+
+
+                <label>
 					<button type="submit" class="button">Submit</button>
+                </label>
 
 			</form>
           </div>
@@ -77,9 +85,9 @@
     </script>
 	
 
-<link href="css/styles.css" rel="stylesheet" type="text/css" />
+<link href="../static/css/styles.css" rel="stylesheet" type="text/css" />
 <link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="css/superfish.css" media="screen">
+<link rel="stylesheet" href="../static/css/superfish.css" media="screen">
 
 {% endblock %}

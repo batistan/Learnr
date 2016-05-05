@@ -1,10 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<head>
-    {{ themap.js }}
-</head>
-
 <body>
 
 <div class="page">
@@ -15,8 +11,8 @@
             <p class=error><strong>Error:</strong> {{ error }}
             {% endif %}
 
-            <button onclick = "RSVPmeetup()">Attend this event</button>
-            <button onclick = "unmeetup()">Do not attend this event</button>
+            <button onclick = "RSVPmeetup()" class="button" style="width:180px; background-size:180px 30px; border:none;">Attend this event</button>
+            <button onclick = "unmeetup()" class="button" style="width:200px; background-size:200px 30px; border:none;">Do not attend this event</button>
 
             <form method="post" action="">
                 <label></label><br>
@@ -32,10 +28,11 @@
 
                 <label>Coordinator: {{ coordinator }}</label><br>
 
-                <center>{{ themap.html }}</center>
+                <!-- jesus christ what kind of awful hackjob wtf is this you should be ashamed -->
+                <!-- screw html5 just use frameborder none of the equivalent options are supported by all browsers anyway-->
+                <!-- TODO: negative values for lat/long should be ok but they arent-->
+                <center><iframe height="500px" width="500px" frameborder="0" src="{{mapurl}}">Your browser is not compatible with this page.</iframe></center>
             </form>
-
-
 
         </div>
     </div>
