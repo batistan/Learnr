@@ -50,8 +50,9 @@ def timepickerjs():
 # Second Button
 @app.route("/meetup", methods=["GET", "POST"])
 def meetup():
-    mapurl="/maps"+str(40.0)+str(-70.0)
-    return render_template("meetup.html",mapurl=mapurl)
+    defaultlat=40.8199813
+    defaultlng=-73.9498308
+    return render_template("meetup.html",lat=defaultlat,lng=defaultlng)
 
 @app.route("/createmeetup", methods=["GET", "POST"])
 def createmeetup():
@@ -168,13 +169,7 @@ def meetupinfo(eid):
     lat=mdict['latitude']
     lng=mdict['longitude']
 
-    mapurl="/maps"+str(lat)+","+str(lng)
     tempuid = "2"
 
-    return render_template("meetupinfo.html", meetid=eid, subject=subject, starttime=starttime, endtime=endtime, coordinator=coordinator, mapurl=mapurl,  
+    return render_template("meetupinfo.html", meetid=eid, subject=subject, starttime=starttime, endtime=endtime, coordinator=coordinator, lat=lat, lng=lng,  
         uid = tempuid, attending = is_going(tempuid, eid))
-
-@app.route('/maps<float:lat>,<float:lng>', methods = ["GET", "POST"])
-def maps(lat, lng):
-    print (lat,lng)
-    return render_template("maps.html", lat=lat, lng=lng)
