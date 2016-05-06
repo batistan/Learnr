@@ -1,6 +1,5 @@
 from app import app
 from flask import render_template, redirect, request, flash, g, session, url_for, send_file
-from flask_googlemaps import GoogleMaps, Map
 from models import *
 
 app.secret_key = "donttellanyonemysecret"
