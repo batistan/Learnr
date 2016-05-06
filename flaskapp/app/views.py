@@ -124,6 +124,15 @@ def signedup():
     add_user(username, password)
     return render_template("signedup.html",username=session['username'])
 
+@app.route("/signedout", methods=["GET","POST"])
+def signedout():
+    if 'username' in session:
+        signoutname = session['username']
+        session.pop('username',None)
+        return render_template("signedout.html",username=signoutname)
+    else:
+        return render_template("signedout.html",error="Not signed in")
+
 
 # Sixth Button
 @app.route("/login", methods=["GET","POST"])
