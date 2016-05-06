@@ -12,6 +12,11 @@
 <script src="../static/js/hoverIntent.js"></script>
 <script src="../static/js/superfish.js"></script>
 
+{%if username%}
+<h7>Signed in as {{username}}</h7> <a href="signedout">Sign Out</a>
+{%endif%}
+
+
 <header>		
   <div class="header-wrap">
   <div class="logo">

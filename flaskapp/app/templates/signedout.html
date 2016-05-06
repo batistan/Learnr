@@ -6,7 +6,12 @@
 		<h1>Welcome to Learnr Homepage</h1>
 	</div>
 	<div class="content"> 
-		<p>Hello! Welcome to Learnr. If you haven't yet, please sign up. We want to create communities of people learning together.</p>
+		{%if username%}
+		<p>Signed out of {{username}}</p>
+		{%endif%}
+		{%if error %}
+			<p><strong>Error: {{error}}</strong></p>
+		{%endif%}
 	</div>
 	
 </div>

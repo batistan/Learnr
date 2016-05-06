@@ -51,6 +51,9 @@ def timepickerjs():
 def meetup():
     defaultlat=40.8199813
     defaultlng=-73.9498308
+    if 'username' in session:
+        return render_template("meetup.html", username=session['username'],lat=defaultlat,lng=defaultlng)
+
     return render_template("meetup.html",lat=defaultlat,lng=defaultlng)
 
 @app.route("/createmeetup", methods=["GET", "POST"])
@@ -61,11 +64,16 @@ def createmeetup():
     subject = request.form['subject']
     createdby = request.form['createdby']
     add_meetup(starttime, endtime, classname, subject, createdby)
+
+    if 'username' in session:
+        return render_template("createdmeetup.html", username=session['username'])
     return render_template("createdmeetup.html")
 
 # Third Button
 @app.route("/attend", methods=["GET", "POST"])
 def attend():
+    if 'username' in session:
+        return render_template("attend.html", username=session['username'])
     return render_template("attend.html")
 
 @app.route("/doRSVP", methods=["GET", "POST"])
@@ -81,7 +89,7 @@ def doRSVPJSON():
     eid = request.args.get('eid', 0, type=int)
 
     set_going(uid, eid)
-    return "Hi!"
+    return "RSVPed"
 
 @app.route("/unRSVP", methods = ["GET", "POST"])
 def unRSVP():
@@ -89,18 +97,22 @@ def unRSVP():
     eid = request.args.get('eid', 0, type=int)
 
     set_not_going(uid, eid)
-    return "Hi!"
+    return "unRSVPed"
     
 
 # Fourth Button
 @app.route("/checkattendance", methods=["GET", "POST"])
 def checkattendance():
+    if 'username' in session:
+        return render_template("checkattendance.html",username=session['username'])
     return render_template("checkattendance.html")
 
 
 # Fifth Button
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
+    if 'username' in session:
+        return render_template("signup.html",username=session['username'])
     return render_template("signup.html")
 
 @app.route("/signedup", methods=["GET", "POST"])
@@ -110,7 +122,8 @@ def signedup():
     session['username'] = username
     session['logged_in'] = True
     add_user(username, password)
-    return render_template("signedup.html")
+    return render_template("signedup.html",username=session['username'])
+
 
 # Sixth Button
 @app.route("/login", methods=["GET","POST"])
@@ -145,6 +158,7 @@ def getallmeetups():
 
 @app.route("/minfo/", methods=["GET", "POST"])
 def minfo():
+
     return render_template("getmeetupinfo.html")
 
 
@@ -170,6 +184,10 @@ def meetupinfo(eid):
     lng=mdict['longitude']
 
     tempuid = "2"
+
+    if 'username' in session:
+        return render_template("meetup.html", username=session['username'],meetid=eid, classname = classname, subject = subject, starttime=starttime, endtime=endtime, coordinator=coordinator, lat=lat, lng=lng,
+        uid = tempuid, attending = is_going(tempuid, eid))
 
     return render_template("meetupinfo.html", meetid=eid, classname = classname, subject = subject, starttime=starttime, endtime=endtime, coordinator=coordinator, lat=lat, lng=lng,  
         uid = tempuid, attending = is_going(tempuid, eid))
