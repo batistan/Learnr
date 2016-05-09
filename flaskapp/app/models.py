@@ -80,12 +80,12 @@ def get_all_attendees(eid):
 def getUsernameFromUID(uid):
     with sql.connect("database.db") as con:
         cur = con.cursor()
-        cur.execute("SELECT username FROM users WHERE uid = ?;", str(uid))
+        cur.execute("SELECT username FROM users WHERE uid = ?;", (uid,))
         rs = cur.fetchall()
         if not rs:
             return "Error"
         else:
-            return rs[0][0]
+            return rs
 
 
 def get_meetup_info(eid):
