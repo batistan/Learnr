@@ -15,6 +15,11 @@ function initAutocomplete(lat,lng) {
     // Move marker on click
     map.addListener('click', function(event) {
       marker.setPosition(event.latLng);
+      // update lat, long values if the fields exist in the document
+      if (document.getElementById("lat") && document.getElementById("lng")) {
+          document.getElementById("lat").value = event.latLng.lat();
+          document.getElementById("lng").value = event.latLng.lng();
+      }
     });
 
     // Bias the SearchBox results towards current map's viewport.
@@ -51,5 +56,7 @@ function initAutocomplete(lat,lng) {
         }
       });
       map.fitBounds(bounds);
+      document.getElementById("lat").value = map.getCenter().lat();
+      document.getElementById("lng").value = map.getCenter().lng();
     });
 }

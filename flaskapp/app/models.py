@@ -10,7 +10,7 @@ def add_user(username, password):
         con.commit()
 
 
-def add_meetup(classname, subject, starttime, endtime, createdby, lat = 0, lon = 0):
+def add_meetup(classname, subject, starttime, endtime, createdby, lat, lon):
     with sql.connect("database.db") as con:
         cur = con.cursor()
         cur.execute("INSERT INTO meetups VALUES (null,?,?,?,?,?,?,?)", (classname, subject, starttime, endtime, createdby, lat, lon))
