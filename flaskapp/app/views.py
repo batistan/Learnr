@@ -1,4 +1,5 @@
 from app import app
+import json
 from flask import render_template, redirect, request, flash, g, session, url_for, send_file
 from models import *
 
@@ -165,7 +166,12 @@ def getattend():
 
 @app.route("/getallmeetups")
 def getallmeetups():
-    return get_all_meetups()
+    return json.dumps(get_all_meetups())
+
+@app.route("/listmeetups")
+def listmeetups():
+    meetups = get_all_meetups()
+    return render_template("listmeetups.html", meetups = meetups)
 
 @app.route("/minfo/", methods=["GET", "POST"])
 def minfo():

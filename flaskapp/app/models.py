@@ -61,7 +61,7 @@ def get_all_meetups():
 
             meetuplist.append(mdict)
 
-        return (json.dumps(meetuplist))
+        return (meetuplist)
 
 
 def get_all_attendees(eid):
