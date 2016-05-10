@@ -15,13 +15,11 @@
     width: 100px;
     text-align: right;
     font-weight: bold;
-    color: green;
   }
   dt:after {
     content: ":";
   }
   dd {
-    f
     margin: 0 0 0 110px;
     padding: 0 0 0.5em 0;
   }
@@ -37,18 +35,25 @@
 
 <div class="page">
     <div class="panel">
-
+<dl>
 {% for m in meetups %}
 <dl>
     <a href="/meetupinfo?m={{m['eid']}}">
-      {% for key, value in m.iteritems() %}
-            <dt>{{ key }}</dt>
-            <dd>{{ value }}</dd>
-      {% endfor %}
+      <dt>Class</dt>
+      <dd>{{m['classname']}}</dd>
+      <dt>Subject</dt>
+      <dd>{{m['subject']}}</dd>
+      <dt>Starting Time</dt>
+      <dd>{{m['starttime']}}</dd>
+      <dt>Ending Time </dt>
+      <dd>{{m['endtime']}}</dd>
+      <dt>Coordinator</dt>
+      <dd>{{m['coordinator']}}</dd>
       </a>
 </dl>
       <br>
     {% endfor %}
+    </dl>
 </div>
 </div>
 

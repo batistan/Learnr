@@ -171,6 +171,9 @@ def getallmeetups():
 @app.route("/listmeetups")
 def listmeetups():
     meetups = get_all_meetups()
+    for m in meetups:
+        m['coordinator'] = getUsernameFromUID(m['createdby'])
+        
     return render_template("listmeetups.html", meetups = meetups)
 
 @app.route("/minfo/", methods=["GET", "POST"])
