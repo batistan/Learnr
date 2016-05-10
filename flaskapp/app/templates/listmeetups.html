@@ -40,7 +40,7 @@
 
 {% for m in meetups %}
 <dl>
-    <a href="/meetupinfo{{m['eid']}}">
+    <a href="/meetupinfo?m={{m['eid']}}">
       {% for key, value in m.iteritems() %}
             <dt>{{ key }}</dt>
             <dd>{{ value }}</dd>

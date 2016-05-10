@@ -184,19 +184,19 @@ def _minfo():
     a = request.args.get('a', 0, type=int)
     return (json.dumps(get_meetup_info(a)))
 
-@app.route("/meetupinfo<int:eid>", methods = ["GET", "POST"])
-def meetupinfo(eid):
-    mdict = get_meetup_info(eid)
+@app.route("/meetupinfo", methods = ["GET", "POST"])
+def meetupinfo():
+    mdict = get_meetup_info(request.args.get('m', 0, type=int))
     if (not mdict):
         return "Error!"
 
     #TODO: get these from json
-    #eid= mdict['eid']
+    eid= mdict['eid']
     classname = mdict['classname']
     subject=mdict['subject']
     starttime=mdict['starttime']
     endtime=mdict['endtime']
-    coordinator=getUsernameFromUID(mdict['createdby'])
+    coordinator= getUsernameFromUID(mdict['createdby'])
     lat=mdict['latitude']
     lng=mdict['longitude']
 

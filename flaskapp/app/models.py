@@ -85,13 +85,13 @@ def getUsernameFromUID(uid):
         if not rs:
             return "Error"
         else:
-            return rs
+            return rs[0][0]
 
 
 def get_meetup_info(eid):
     with sql.connect("database.db") as con:
         cur = con.cursor()
-        cur.execute("SELECT * FROM meetups where eid = ?;", str(eid))
+        cur.execute("SELECT * FROM meetups where eid = ?;", [(str(eid))])
         row = cur.fetchone()
 
         if (not row):
