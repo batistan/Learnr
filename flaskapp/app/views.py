@@ -193,7 +193,6 @@ def meetupinfo():
     if (not mdict):
         return "Error!"
 
-    #TODO: get these from json
     eid= mdict['eid']
     classname = mdict['classname']
     subject=mdict['subject']
@@ -211,3 +210,14 @@ def meetupinfo():
 
     return render_template("meetupinfo.html", meetid=eid, classname = classname, subject = subject, starttime=starttime, endtime=endtime, coordinator=coordinator, lat=lat, lng=lng,  
         uid = tempuid, attending = is_going(tempuid, eid))
+
+@app.route("/contactus", methods = ["GET","POST"])
+def contactus():
+    return render_template("contactus.html")
+
+@app.route("/messagesent", methods = ["GET", "POST"])
+def messagesent():
+    name = request.form['name']
+    email = request.form['email']
+    message = request.form['message']
+    return render_template("messagesent.html", name=name)

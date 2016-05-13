@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="page">
+	<div class="panel">
+		<div class = "title">
+            <h2>Thank you for contacting us, {{name}}! We will get back to you at the provided email as soon as possible.</h2>
+			{% if error %} 
+				<p class=error><strong>Error:</strong> {{ error }}
+			{% endif %}  
+		
+		</div>  
+    </div>
+</div>
+{% endblock %}

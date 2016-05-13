@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
 
+<link href="../static/css/styles.css" rel="stylesheet" type="text/css" />
+<link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="../static/css/superfish.css" media="screen">
     <script type="text/javascript"
      src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
     </script>
@@ -13,57 +17,6 @@
 <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen"
      href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
-<head>
-    <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-      }
-      .controls {
-        margin-top: 10px;
-        border: 1px solid transparent;
-        border-radius: 2px 0 0 2px;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        height: 32px;
-        outline: none;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-      }
-      #pac-input {
-        background-color: #fff;
-        font-family: Roboto;
-        font-size: 15px;
-        font-weight: 300;
-        margin-left: 12px;
-        padding: 0 11px 0 13px;
-        text-overflow: ellipsis;
-        width: 300px;
-      }
-      #pac-input:focus {
-        border-color: #4d90fe;
-      }
-      .pac-container {
-        font-family: Roboto;
-      }
-      #type-selector {
-        color: #fff;
-        background-color: #4d90fe;
-        padding: 5px 11px 0px 11px;
-      }
-      #type-selector label {
-        font-family: Roboto;
-        font-size: 13px;
-        font-weight: 300;
-      }
-      #target {
-        width: 345px;
-      }
-    </style>
-</head>
 	 
 <div class="page">
 	<div class="panel">
@@ -72,14 +25,14 @@
 		<h1>Contact Us</h1>
         <h3>All fields are required</h3>
           		  	
-			<form id="contactForm">
+        <form method="post" action="{{url_for('messagesent')}}" id="contactForm">
 			<p id="returnmessage"></p>
 			<label>Name: <span>*</span></label>
-			<input type="text" id="name" placeholder="Name"/>
+			<input type="text" class="input_text" id="name" placeholder="Name"/>
 			<label>Email: <span>*</span></label>
-			<input type="text" id="email" placeholder="Email"/>
+			<input type="text" class="input_text" id="email" placeholder="Email"/>
 			<label>Message:</label>
-			<textarea id="message" class="contactMessage" onkeyup="characterCount()" placeholder="Message......."></textarea>
+			<textarea id="message" class="input_text" class="contactMessage" onkeyup="characterCount()" placeholder="Message......."></textarea>
 			<button class="button">Submit</button>
 			</form>
 
