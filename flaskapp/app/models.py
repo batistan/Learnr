@@ -151,17 +151,8 @@ def confirmUserPass(user,passw):
 
         if not row:
             return False
-<<<<<<< HEAD
 
         return True
-
-
-=======
-#        (str(user) == row[0] and str(passw) == row[1]):
-#            return True
-#        else:
-        return True
->>>>>>> d4a223147f7ee1be26c5e234a4631b40889fb299
         # def exists_user():
         # def delete_meetup():
         # def delete_user():
