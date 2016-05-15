@@ -53,7 +53,7 @@ def meetup():
     defaultlat=40.8199813
     defaultlng=-73.9498308
     if 'username' in session:
-        return render_template("meetup.html", username=session['username'],lat=defaultlat,lng=defaultlng)
+        return render_template("meetup.html", username=session['username'], id = session['id'], lat=defaultlat,lng=defaultlng)
 
     return render_template("meetup.html",lat=defaultlat,lng=defaultlng)
 
@@ -63,13 +63,13 @@ def createmeetup():
     endtime = request.form['endtime']
     classname = request.form['classname']
     subject = request.form['subject']
-    createdby = request.form['createdby']
+    createdby = session['id']
     latitude = request.form['lat']
     longitude = request.form['lng']
     add_meetup(starttime, endtime, classname, subject, createdby, latitude, longitude)
 
     if 'username' in session:
-        return render_template("createdmeetup.html", username=session['username'])
+        return render_template("createdmeetup.html", username=session['username'], id = session['id'])
     return render_template("createdmeetup.html")
 
 # Third Button
@@ -150,9 +150,10 @@ def loggedin():
     logUser = request.form['username']
     logPass = request.form['password']
     loginStatus = True
-    # loginStatus = confirmUserPass(logUser,logPass)
+    loginStatus = confirmUserPass(logUser,logPass)
     if loginStatus == True:
         session['username'] = logUser
+        session['id'] = getIDFromUsername(logUser)
         return render_template("loggedin.html",username=logUser)
     else:
         return render_template("loggedin.html",error="Bad user or password")
@@ -202,10 +203,10 @@ def meetupinfo():
     lat=mdict['latitude']
     lng=mdict['longitude']
 
-    tempuid = "2"
+    tempuid = session['id']
 
     if 'username' in session:
-        return render_template("meetup.html", username=session['username'],meetid=eid, classname = classname, subject = subject, starttime=starttime, endtime=endtime, coordinator=coordinator, lat=lat, lng=lng,
+        return render_template("meetupinfo.html", username=session['username'],meetid=eid, classname = classname, subject = subject, starttime=starttime, endtime=endtime, coordinator=coordinator, lat=lat, lng=lng,
         uid = tempuid, attending = is_going(tempuid, eid))
 
     return render_template("meetupinfo.html", meetid=eid, classname = classname, subject = subject, starttime=starttime, endtime=endtime, coordinator=coordinator, lat=lat, lng=lng,  

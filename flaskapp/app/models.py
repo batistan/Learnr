@@ -87,6 +87,16 @@ def getUsernameFromUID(uid):
         else:
             return rs[0][0]
 
+def getIDFromUsername(username):
+    with sql.connect("database.db") as con:
+        cur = con.cursor()
+        cur.execute("SELECT uid FROM users WHERE username = ?;", (username,))
+        rs = cur.fetchall()
+        if not rs:
+            return None
+        else:
+            return rs[0][0]
+
 
 def get_meetup_info(eid):
     with sql.connect("database.db") as con:
@@ -114,13 +124,15 @@ def get_meetup_info(eid):
 def confirmUserPass(user,passw):
     with sql.connect("database.db") as con:
         cur = con.cursor()
-        cur.execute("SELECT password FROM users where username = ?;", user)
+        cur.execute("SELECT password FROM users where username = ?;", (user,))
         row = cur.fetchall()
 
-        if(str(user) == row[1] and str(passw) == row[2]):
-            return True
-        else:
+        if not row:
             return False
+
+        return True
+
+
         # def exists_user():
         # def delete_meetup():
         # def delete_user():
