@@ -10,13 +10,11 @@ def add_user(username, password):
         cur.execute("INSERT INTO users VALUES (null,?,?)", (username, password))
         con.commit()
 
-
 def add_meetup(classname, subject, starttime, endtime, createdby, lat, lon):
     with sql.connect("database.db") as con:
         cur = con.cursor()
         cur.execute("INSERT INTO meetups VALUES (null,?,?,?,?,?,?,?)", (classname, subject, starttime, endtime, createdby, lat, lon))
         con.commit()
-
 
 def set_going(uid, eid):
     with sql.connect("database.db") as con:
@@ -30,7 +28,6 @@ def set_not_going(uid, eid):
         cur.execute("DELETE FROM RSVPS WHERE eid = ? and uid = ?", (eid, uid))
         con.commit()
 
-
 def is_going(uid, eid):
     with sql.connect("database.db") as con:
         cur = con.cursor()
@@ -39,7 +36,6 @@ def is_going(uid, eid):
             return False
         else:
             return True
-
 
 def get_all_meetups():
     with sql.connect("database.db") as con:
@@ -56,14 +52,12 @@ def get_all_meetups():
             mdict['classname'] = row[3]
             mdict['subject'] = row[4]
             mdict['createdby'] = row[5]
-            #mdict['coordinator'] = row[6]
             mdict['latitude'] = row[6]
             mdict['longitude'] = row[7]
 
             meetuplist.append(mdict)
 
         return (meetuplist)
-
 
 def get_all_attendees(eid):
     with sql.connect("database.db") as con:
@@ -76,7 +70,6 @@ def get_all_attendees(eid):
             listofattendees.append(getUsernameFromUID(row[1]))  # change to getUsername(uid)
 
         return (json.dumps(listofattendees))
-
 
 def getUsernameFromUID(uid):
     with sql.connect("database.db") as con:
@@ -98,7 +91,6 @@ def getIDFromUsername(username):
         else:
             return rs[0][0]
 
-
 def get_meetup_info(eid):
     with sql.connect("database.db") as con:
         cur = con.cursor()
@@ -115,7 +107,6 @@ def get_meetup_info(eid):
         mdict['classname'] = row[3]
         mdict['subject'] = row[4]
         mdict['createdby'] = row[5]
-        #mdict['coordinator'] = row[6]
         mdict['latitude'] = row[6]
         mdict['longitude'] = row[7]
         return (mdict)
@@ -135,7 +126,6 @@ def findByClass(term):
             mdict['classname'] = row[3]
             mdict['subject'] = row[4]
             mdict['createdby'] = row[5]
-            #mdict['coordinator'] = row[6]
             mdict['latitude'] = row[6]
             mdict['longitude'] = row[7]
 

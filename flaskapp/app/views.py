@@ -66,7 +66,7 @@ def createmeetup():
     createdby = session['id']
     latitude = request.form['lat']
     longitude = request.form['lng']
-    add_meetup(starttime, endtime, classname, subject, createdby, latitude, longitude)
+    add_meetup(classname, subject, starttime, endtime, createdby, latitude, longitude)
 
     if 'username' in session:
         return render_template("createdmeetup.html", username=session['username'], id = session['id'])
