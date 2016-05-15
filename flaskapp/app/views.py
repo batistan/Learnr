@@ -132,6 +132,7 @@ def signedout():
     if 'username' in session:
         signoutname = session['username']
         session.pop('username',None)
+        session.pop('id', None)
         return render_template("signedout.html",username=signoutname)
     else:
         return render_template("signedout.html",error="Not signed in")
