@@ -47,10 +47,10 @@ def get_all_meetups():
         for row in rs:
             mdict = collections.OrderedDict()
             mdict['eid'] = row[0]
-            mdict['starttime'] = row[1]
-            mdict['endtime'] = row[2]
-            mdict['classname'] = row[3]
-            mdict['subject'] = row[4]
+            mdict['classname'] = row[1]
+            mdict['subject'] = row[2]
+            mdict['starttime'] = row[3]
+            mdict['endtime'] = row[4]
             mdict['createdby'] = row[5]
             mdict['latitude'] = row[6]
             mdict['longitude'] = row[7]
@@ -102,10 +102,10 @@ def get_meetup_info(eid):
 
         mdict = collections.OrderedDict()
         mdict['eid'] = row[0]
-        mdict['starttime'] = row[1]
-        mdict['endtime'] = row[2]
-        mdict['classname'] = row[3]
-        mdict['subject'] = row[4]
+        mdict['classname'] = row[1]
+        mdict['subject'] = row[2]
+        mdict['starttime'] = row[3]
+        mdict['endtime'] = row[4]
         mdict['createdby'] = row[5]
         mdict['latitude'] = row[6]
         mdict['longitude'] = row[7]
@@ -114,17 +114,17 @@ def get_meetup_info(eid):
 def findByClass(term):
     with sql.connect("database.db") as con:
         cur = con.cursor()
-        cur.execute("SELECT * FROM meetups where classname = '?';", (term,))
+        cur.execute("SELECT * FROM meetups where classname = ?;", (term,))
         rs = list(cur.fetchall())
 
         meetuplist = []
         for row in rs:
             mdict = collections.OrderedDict()
             mdict['eid'] = row[0]
-            mdict['starttime'] = row[1]
-            mdict['endtime'] = row[2]
-            mdict['classname'] = row[3]
-            mdict['subject'] = row[4]
+            mdict['classname'] = row[1]
+            mdict['subject'] = row[2]
+            mdict['starttime'] = row[3]
+            mdict['endtime'] = row[4]
             mdict['createdby'] = row[5]
             mdict['latitude'] = row[6]
             mdict['longitude'] = row[7]

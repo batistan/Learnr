@@ -225,4 +225,12 @@ def messagesent():
 
 @app.route("/meetupsearch", methods = ["GET", "POST"])
 def meetupsearch():
-   mdict = findByClass(request.args.get('s', 0, type=string)) 
+    meetups = findByClass(request.form['s']) 
+    for m in meetups:
+        m['coordinator'] = getUsernameFromUID(m['createdby'])
+        
+    return render_template("listmeetups.html", meetups = meetups)
+
+@app.route("/search")
+def search():
+    return render_template("search.html")
