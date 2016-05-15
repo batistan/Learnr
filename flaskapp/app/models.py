@@ -1,6 +1,7 @@
 import sqlite3 as sql
 import json
 import collections
+import os
 
 
 def add_user(username, password):
@@ -117,9 +118,30 @@ def get_meetup_info(eid):
         #mdict['coordinator'] = row[6]
         mdict['latitude'] = row[6]
         mdict['longitude'] = row[7]
-
         return (mdict)
 
+def findByClass(term):
+    with sql.connect("database.db") as con:
+        cur = con.cursor()
+        cur.execute("SELECT * FROM meetups where classname = '?';", (term,))
+        rs = list(cur.fetchall())
+
+        meetuplist = []
+        for row in rs:
+            mdict = collections.OrderedDict()
+            mdict['eid'] = row[0]
+            mdict['starttime'] = row[1]
+            mdict['endtime'] = row[2]
+            mdict['classname'] = row[3]
+            mdict['subject'] = row[4]
+            mdict['createdby'] = row[5]
+            #mdict['coordinator'] = row[6]
+            mdict['latitude'] = row[6]
+            mdict['longitude'] = row[7]
+
+            meetuplist.append(mdict)
+
+        return (meetuplist)
 
 def confirmUserPass(user,passw):
     with sql.connect("database.db") as con:
@@ -129,10 +151,17 @@ def confirmUserPass(user,passw):
 
         if not row:
             return False
+<<<<<<< HEAD
 
         return True
 
 
+=======
+#        (str(user) == row[0] and str(passw) == row[1]):
+#            return True
+#        else:
+        return True
+>>>>>>> d4a223147f7ee1be26c5e234a4631b40889fb299
         # def exists_user():
         # def delete_meetup():
         # def delete_user():
