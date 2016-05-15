@@ -150,8 +150,8 @@ def loggedin():
     logUser = request.form['username']
     logPass = request.form['password']
     loginStatus = True
-    # loginStatus = confirmUserPass(logUser,logPass)
-    if loginStatus == True:
+    loginStatus = confirmUserPass(logUser,logPass)
+    if loginStatus:
         session['username'] = logUser
         return render_template("loggedin.html",username=logUser)
     else:
@@ -221,3 +221,7 @@ def messagesent():
     email = request.form['email']
     message = request.form['message']
     return render_template("messagesent.html", name=name)
+
+@app.route("/meetupsearch", methods = ["GET", "POST"])
+def meetupsearch():
+   mdict = findByClass(request.args.get('s', 0, type=string)) 
