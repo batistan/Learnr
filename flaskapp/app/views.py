@@ -124,6 +124,7 @@ def signedup():
     password = request.form['password']
     session['username'] = username
     session['logged_in'] = True
+    session['id'] = getIDFromUsername(username)
     add_user(username, password)
     return render_template("signedup.html",username=session['username'])
 
