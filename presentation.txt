@@ -1,0 +1,41 @@
+- Get Flask running, go to Learnr homepage
+
+- Introduce yourselves
+- Present Learnr
+- "Platform for creating and attending meetups where people can go to learn about topics"
+    - Or something to that effect
+
+- NOTE: names are just who should be talking around this time
+- assign someone at the start to be doing the actual clicking and all
+- to avoid the awkward shuffling around
+- should preferably be someone very familiar with how to navigate the site
+- ie probably not tanzila
+
+TANZILA
+- First things first: sign up
+- create user
+- go log in
+- log in as user
+- point out the bar at the top of page with username
+
+PAUL
+- search a meetup
+- go to any meetupinfo
+- demonstrate features
+- the map is beautiful and gorgeous and deserves worship
+- point out the map
+- show off how awesome it is
+- show off attend/do not attend meetup
+
+MOI
+- create meetup 
+- note the awesome markers on the map and how the textboxes update to show lat/long
+- map search for location
+- date picker
+- check newly-made meetup at list meetups
+
+SAMMY BOY
+- show contact us
+- log out
+- conclude the thing i guess
+- maybe we need more features
